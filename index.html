@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jogo da Forca — Faroeste</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dust dust-one"></div><div class="dust dust-two"></div>
+  <main class="game">
+    <header class="topbar">
+      <div class="brand-mark">★</div>
+      <div><p class="eyebrow">WILD WEST ARCADE</p><h1>JOGO DA <span>FORCA</span></h1></div>
+      <div class="badge">✦ SALOON EDITION ✦</div>
+    </header>
+
+    <section class="hud">
+      <div class="wood-panel score-panel">
+        <span class="panel-label">PONTUAÇÃO</span><strong id="score">0000</strong>
+      </div>
+      <div class="wood-panel attempts-panel">
+        <span class="panel-label">TENTATIVAS RESTANTES</span>
+        <div id="hearts" class="hearts">♥ ♥ ♥ ♥ ♥ ♥</div>
+      </div>
+      <button id="hintBtn" class="wood-button hint-button">☼ <span>DICA</span></button>
+    </section>
+
+    <section class="play-area">
+      <div class="wood-panel word-panel">
+        <div class="section-heading"><span>✦</span> PALAVRA SECRETA <span>✦</span></div>
+        <div id="category" class="category">CATEGORIA: FAROESTE</div>
+        <div id="word" class="word" aria-live="polite"></div>
+        <p id="message" class="message">Escolha uma letra, forasteiro...</p>
+      </div>
+
+      <div class="scene" aria-label="Desenho do cowboy na forca">
+        <div class="sun"></div><div class="mesa mesa-a"></div><div class="mesa mesa-b"></div>
+        <div class="cactus cactus-a"><i></i><b></b></div><div class="cactus cactus-b"><i></i></div>
+        <div class="gallows">
+          <div class="post"></div><div class="beam"></div><div class="brace"></div><div class="rope"></div>
+          <svg id="cowboy" class="cowboy" viewBox="0 0 180 300" role="img" aria-label="Cowboy pendurado">
+            <!-- head and hat -->
+            <g id="headPart" class="body-part">
+              <path class="outline" d="M55 64 Q43 43 55 24 Q90 3 125 24 Q138 43 125 64 Z"/>
+              <path class="outline hat-brim" d="M30 53 Q88 36 150 53 Q145 68 90 67 Q43 68 30 53 Z"/>
+              <ellipse class="skin" cx="90" cy="76" rx="29" ry="34"/>
+              <path class="outline" d="M62 67 Q90 48 118 67 L117 56 Q89 41 64 56 Z"/>
+              <path d="M76 78 l7 6 m-7 0 l7 -6 M99 78 l7 6 m-7 0 l7 -6" stroke="#2b170e" stroke-width="3" fill="none"/>
+              <path d="M79 98 Q90 91 101 98" stroke="#2b170e" stroke-width="3" fill="none"/>
+              <path d="M72 105 Q90 118 108 105" stroke="#2b170e" stroke-width="5" fill="none"/>
+            </g>
+            <g id="bodyPart" class="body-part">
+              <path class="shirt" d="M66 111 L48 124 L36 177 L53 183 L64 151 L64 213 L116 213 L116 151 L127 183 L144 177 L132 124 L114 111 L101 123 L79 123 Z"/>
+              <path class="outline" d="M79 123 L90 143 L101 123 M90 143 L90 208" fill="none"/>
+              <path class="vest" d="M70 119 L82 126 L76 171 L64 183 L64 133 Z M110 119 L98 126 L104 171 L116 183 L116 133 Z"/>
+              <path class="belt" d="M64 184 L116 184 L116 196 L64 196 Z"/>
+              <rect class="buckle" x="84" y="184" width="13" height="12" rx="2"/>
+            </g>
+            <g id="leftArm" class="body-part">
+              <path class="limb" d="M48 128 L35 171 L27 197"/>
+              <path class="skin" d="M19 193 Q27 186 34 195 L33 210 Q24 217 18 207 Z"/>
+            </g>
+            <g id="rightArm" class="body-part">
+              <path class="limb" d="M132 128 L145 171 L153 197"/>
+              <path class="skin" d="M146 195 Q154 187 161 195 L163 207 Q154 217 147 209 Z"/>
+            </g>
+            <g id="leftLeg" class="body-part">
+              <path class="pants" d="M67 207 L89 207 L83 258 L70 272 L58 267 L64 242 Z"/>
+              <path class="boot" d="M61 260 L77 265 L73 280 L45 281 L43 274 Z"/>
+            </g>
+            <g id="rightLeg" class="body-part">
+              <path class="pants" d="M91 207 L113 207 L116 242 L127 267 L115 273 L99 258 Z"/>
+              <path class="boot" d="M112 263 L128 258 L145 274 L142 282 L115 280 Z"/>
+            </g>
+          </svg>
+          <div class="ground"></div>
+        </div>
+        <div class="scene-caption">JUSTIÇA DO VELHO OESTE</div>
+      </div>
+
+      <aside class="wood-panel progress-panel">
+          <div class="section-heading small">PROGRESSO DO COWBOY</div>
+
+          <div class="progress-list">
+              <div class="progress-step" data-step="1">
+                  <span class="step-icon">♟</span>
+                  <span>1º ERRO<small>Perna direita</small></span>
+              </div>
+
+              <div class="progress-step" data-step="2">
+                  <span class="step-icon">♟</span>
+                  <span>2º ERRO<small>Perna esquerda</small></span>
+              </div>
+
+              <div class="progress-step" data-step="3">
+                  <span class="step-icon">↘</span>
+                  <span>3º ERRO<small>Braço direito</small></span>
+              </div>
+
+              <div class="progress-step" data-step="4">
+                  <span class="step-icon">↙</span>
+                  <span>4º ERRO<small>Braço esquerdo</small></span>
+              </div>
+
+              <div class="progress-step" data-step="5">
+                  <span class="step-icon">♧</span>
+                  <span>5º ERRO<small>Corpo</small></span>
+              </div>
+
+              <div class="progress-step" data-step="6">
+                  <span class="step-icon">♙</span>
+                  <span>6º ERRO<small>Chapéu e cabeça</small></span>
+              </div>
+          </div>
+
+      </aside>
+    </section>
+
+    <section class="keyboard-panel wood-panel">
+      <div class="keyboard-title">⌁ ESCOLHA SUA LETRA ⌁</div>
+      <div id="keyboard" class="keyboard"></div>
+    </section>
+    <footer><span>✦</span> MANTENHA A PÓLVORA SECA E A MENTE AFIADA <span>✦</span></footer>
+  </main>
+  <div id="overlay" class="overlay hidden">
+    <div class="end-card wood-panel">
+      <div id="endIcon" class="end-icon">★</div>
+      <h2 id="endTitle">VOCÊ VENCEU!</h2>
+      <p id="endText"></p>
+      <button id="newGame" class="wood-button">↻ JOGAR DE NOVO</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
